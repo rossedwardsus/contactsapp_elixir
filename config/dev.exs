@@ -48,10 +48,10 @@ config :logger, :console, format: "[$level] $message\n"
 config :phoenix, :stacktrace_depth, 20
 
 # Configure your database
-config :contactsapp, Contactsapp.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "contactsapp_dev",
-  hostname: "localhost",
-  pool_size: 10
+#config :contactsapp, Contactsapp.Repo,
+#  adapter: Ecto.Adapters.Postgres,
+  #username: "postgres",
+  #password: "postgres",
+  #database: "contactsapp_dev",
+  #hostname: "localhost",
+  #pool_size: 10
