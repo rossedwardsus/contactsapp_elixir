@@ -43,6 +43,18 @@
 
     //private textInput: HTMLInputElement;
 
+    constructor() {
+      super();
+
+      this.state = {
+        isEnabled: false
+      }
+
+      this.addContact = this.addContact.bind(this);
+
+    }
+
+
     componentDidMount(){
 
         axios.post('/api', {
@@ -58,10 +70,13 @@
 
     }
 
-    addPost() { 
+    addContact() { 
+
+      let that = this;
+      let firstName = that.textInput.value
       
       axios.post('/api', {
-            firstName: 'Fred',
+            firstName: firstName,
             lastName: 'Flintstone'
           })
           .then(function (response) {
@@ -78,7 +93,7 @@
                   <input ref={(input) => { this.textInput = input; }} />
                   <br/>
                   <input/>
-                  <button onClick={this.addPost}>Add</button>
+                  <button onClick={this.addContact}>Add</button>
                 </p>
         );
     }
