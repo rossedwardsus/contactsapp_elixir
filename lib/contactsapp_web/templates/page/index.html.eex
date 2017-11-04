@@ -33,4 +33,37 @@
       </li>
     </ul>
   </div>
+  <div id="root"></div>
 </div>
+
+
+<script type="text/babel">
+
+  class Greeting extends React.Component {
+
+    componentDidMount(){
+
+        axios.post('/api', {
+          firstName: 'Fred',
+          lastName: 'Flintstone'
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+    }
+
+    render() {
+        return (<p>Hello world1</p>);
+    }
+  }
+
+  ReactDOM.render(
+    <Greeting/>,
+    document.getElementById('root')
+  );
+
+</script>
