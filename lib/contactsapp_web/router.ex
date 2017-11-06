@@ -18,8 +18,10 @@ defmodule ContactsappWeb.Router do
 
     get "/", PageController, :index
     get "/add_contact", AddContactController, :index
+    get "/my_contacts", MyContactsController, :index
 
-    post "/api", ApiController, :index
+    post "/api/add", ApiController, :create
+    post "/api/list", ApiController, :list
 
   end
 

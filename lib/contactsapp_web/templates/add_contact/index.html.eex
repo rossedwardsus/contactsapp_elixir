@@ -57,7 +57,7 @@
 
     componentDidMount(){
 
-        axios.post('/api', {
+        axios.post('/api/new', {
           firstName: 'Fred',
           lastName: 'Flintstone'
         })
@@ -75,7 +75,7 @@
       let that = this;
       let firstName = that.textInput.value
       
-      axios.post('/api', {
+      axios.post('/api/new', {
             firstName: firstName,
             lastName: 'Flintstone'
           })
@@ -93,6 +93,12 @@
                   <input ref={(input) => { this.textInput = input; }} />
                   <br/>
                   <input/>
+                  <br/>
+                  where we met
+                  <br/>
+                  skills
+                  <br/>
+                  <br/>
                   <button onClick={this.addContact}>Add</button>
                 </p>
         );
