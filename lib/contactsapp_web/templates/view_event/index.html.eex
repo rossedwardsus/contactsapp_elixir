@@ -1,7 +1,3 @@
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
- 
 
 <div class="jumbotron">
   <h2><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h2>
@@ -38,9 +34,8 @@
       </li>
     </ul>
   </div>
-  
-  
-</div>
+  <%= @conn.params["event_id"] %>
+  </div>
 
 
 <script type="text/babel">
@@ -53,7 +48,7 @@
       super();
 
       this.state = {
-        isEnabled: false,
+        eventName: "",
         month: "",
         day: "",
         year: "",
@@ -72,16 +67,22 @@
     componentDidMount(){
 
         
-        /*axios.post('/api/new', {
-          firstName: 'Fred',
-          lastName: 'Flintstone'
-        })
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });*/
+      let that = this;
+      //let firstName = that.textInput.value
+      
+      axios.post('/api/view_event', {
+            event_id: <%= @conn.params["event_id"] %>
+          })
+          .then(function (response) {
+            console.log(response);
+            //eventName
+            //eventDateTime
+            //tags
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
 
     }
 
@@ -115,50 +116,34 @@
 
     addContact() { 
 
-      let that = this;
-      let firstName = that.textInput.value
-      
-      axios.post('/api/new_event', {
-            eventName: firstName,
-            eventDate: this.state.day + "-" + this.state.month + "-2017",
-            tags: this.state.tags
+         axios.post('/api/follow_event', {
+            event_id: <%= @conn.params["event_id"] %>
           })
           .then(function (response) {
             console.log(response);
+            //eventName
+            //eventDateTime
+            //tags
           })
           .catch(function (error) {
             console.log(error);
           });
-
+      
     }
 
     render() {
         return (<div>
-                  Add Event 
-                  <br/>
-                  <br/>
-                  <input placeholder="Event Name" ref={(input) => { this.textInput = input; }} />
+                  View Event
                   <br/>
                   tags
                   <br/>
-                  <select multiple={true} value={this.state.tags} onChange={(e) => this.selectTags(e)}>
-                      <option value="startups">Startups</option>
-                      <option value="programming">Programming</option>
-                  </select>
+                  name of event
                   <br/>
-                  <select onChange={(e) => this.selectMonth(e)}>
-                      <option>Month</option>
-                      <option value="11">November</option>
-                  </select>
-                  <select onChange={(e) => selectMonth(e)}>
-                      <option>Day</option>
-                      <option value="7">Tuesday</option>
-                  </select>
+                  event date
                   <br/>
-                  datetime
+                  follow event
                   <br/>
-                  <button onClick={this.addContact}>Add Event</button>
-                </div>
+                  </div>
         );
     }
   }

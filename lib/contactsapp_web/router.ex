@@ -21,10 +21,16 @@ defmodule ContactsappWeb.Router do
     get "/my_contacts", MyContactsController, :index
     get "/add_event", AddEventController, :index
     get "/list_events", ListEventsController, :index
+    get "/view_event/:event_id", ViewEventController, :index
 
+
+  #scope "/api", ContactsappWeb do
+    #pipe_through :api
 
     post "/api/add", ApiController, :create
     post "/api/list", ApiController, :list
+    post "/api/new_event", ApiController, :new_event
+    post "/api/view_event", ApiController, :view_event
 
   end
 

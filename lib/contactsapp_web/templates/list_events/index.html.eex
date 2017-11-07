@@ -134,31 +134,18 @@
 
     render() {
         return (<div>
-                  Add Event 
+                  List of Events 
                   <br/>
+                  {[{event_id: 1, event_name: "one"}].map((event) => {
+
+                    let event_url = "/view_event/" + event.event_id;
+
+                    return(<a href={event_url}>{event.event_name}</a>)
+
+                  })}
+
                   <br/>
-                  <input placeholder="Event Name" ref={(input) => { this.textInput = input; }} />
-                  <br/>
-                  tags
-                  <br/>
-                  <select multiple={true} value={this.state.tags} onChange={(e) => this.selectTags(e)}>
-                      <option value="startups">Startups</option>
-                      <option value="programming">Programming</option>
-                  </select>
-                  <br/>
-                  <select onChange={(e) => this.selectMonth(e)}>
-                      <option>Month</option>
-                      <option value="11">November</option>
-                  </select>
-                  <select onChange={(e) => selectMonth(e)}>
-                      <option>Day</option>
-                      <option value="7">Tuesday</option>
-                  </select>
-                  <br/>
-                  datetime
-                  <br/>
-                  <button onClick={this.addContact}>Add Event</button>
-                </div>
+                  </div>
         );
     }
   }
