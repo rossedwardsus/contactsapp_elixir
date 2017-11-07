@@ -1,6 +1,10 @@
 defmodule ContactsApp.Registration.RegistrationContext do
     #use Ecto.Schema
     import Ecto.Changeset
+    #import Comeonin.Bcrypt
+    #alias Comeonin.Bcrypt
+    #import Comeonin.Bcrypt, only: [checkpw: 2]
+    
 
     alias ContactsApp.Registration.Registration
     alias Contactsapp.Repo
@@ -34,7 +38,7 @@ defmodule ContactsApp.Registration.RegistrationContext do
 	    struct
 	    |> cast(attrs, @optional_fields, @required_fields)
 	    #|> validate_required([:name, :email, :message])
-	    #|> put_change(:password_hash, Comeonin.Bcrypt.hashpwsalt("password"))
+	    |> put_change(:password_hash, Comeonin.Bcrypt.hashpwsalt("password"))
 	    |> put_change(:registration_datetime, Ecto.DateTime.utc)
   	end
 

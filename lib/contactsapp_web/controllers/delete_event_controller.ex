@@ -1,4 +1,4 @@
-defmodule ContactsappWeb.AddContactController do
+defmodule ContactsappWeb.DeleteEventController do
   use ContactsappWeb, :controller
 
   def index(conn, _params) do

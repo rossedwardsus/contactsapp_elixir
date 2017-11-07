@@ -78,7 +78,10 @@
             password: this.state.password
           })
           .then(function (response) {
-            console.log(JSON.stringify(response));
+            console.log(JSON.stringify(response.data.user_id));
+            //set user id in localstorage and redirect
+            localStorage.setItem('user_id', "" + response.data.user_id);
+            //location.href = "/add_event";
           })
           .catch(function (error) {
             console.log(error);
