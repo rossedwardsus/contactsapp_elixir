@@ -4,6 +4,7 @@ defmodule ContactsappWeb.ApiController do
   alias ContactsApp.Registration.UserContactContext
   alias ContactsApp.Registration.RegistrationContext
   #alias ContactsApp.Registration.Registration
+  alias ContactsApp.User.UserEventContext
   alias ContactsApp.User.UserProfileContext
 
   #alias ContactsApp.User.ProfileContext
@@ -70,17 +71,32 @@ defmodule ContactsappWeb.ApiController do
 
   		IO.inspect(_params)
 
+  		#IO.inspect(Ecto.DateTime.cast(_params["eventDateTime"]))
+
+  		#{:ok, event_datetime_naive} = Timex.parse("08/02/2016 6:15 PM", "{0D}/{0M}/{YYYY} {h12}:{m} {AM}")
+
+  		#{:ok,  event_datetime_naive} = Timex.parse(_params["eventDateTime"], "{0D}-{0M}-{YYYY} {h12}:{m} {AM}")
+
+  		#{:ok,  event_datetime_naive} = Timex.parse(_params["eventDateTime"], "{0D}-{0M}-{YYYY} {h12}:{m} {AM}")
+
+  		{:ok,  event_datetime_naive} = Timex.parse(_params["eventDateTime"], "{YYYY}-{0M}-{0D} {h12}:{m}:{s}")
+
+  		IO.inspect(event_datetime_naive)
+
+  		#event_datetime = NaiveDateTime.to_erl(event_datetime_naive) |> Ecto.DateTime.from_erl
+
   		for x <- _params["tags"] do
 		  IO.inspect(x)
 		end
-	    #case UserContactContext.get_user_contacts(_params) do
-	    #  {:ok, user_contact} -> json conn, %{hello: "there"}
+
+	    case UserEventContext.add_user_event(%{user_id: _params["user_id"], event_name: "name", event_datetime: ~N[2017-11-01 08:00:00]}) do
+	      {:ok, user_event} -> json conn, %{hello: "there"}
 	    #    conn
 	    #    |> put_flash(:info, "User created successfully.")
 	    #    |> redirect(to: user_path(conn, :show, user))
 	    #  {:error, %Ecto.Changeset{} = changeset} ->
 	    #    render(conn, "new.html", changeset: changeset)
-	    #end
+	    end
 
   end
 

@@ -19,13 +19,14 @@
         month: "",
         day: "",
         year: "",
+        time: "",
         tags: []
       }
 
       this.addContact = this.addContact.bind(this);
       this.selectTags = this.selectTags.bind(this);
       this.selectMonth = this.selectMonth.bind(this);
-      this.selectYear = this.selectYear.bind(this);
+      this.selectDay = this.selectDay.bind(this);
 
 
     }
@@ -66,12 +67,21 @@
     selectMonth(e) {
 
         console.log(e.target.value);
+        this.setState({month: e.target.value});
 
     }
 
-    selectYear(e) {
+    selectDay(e) {
 
         console.log(e.target.value);
+        this.setState({day: e.target.value});
+
+    }
+
+    selectTime(e) {
+
+        console.log(e.target.value);
+        this.setState({time: e.target.value});
 
     }
 
@@ -83,7 +93,7 @@
       axios.post('/api/new_event', {
             user_id: localStorage.getItem("user_id"),
             eventName: firstName,
-            eventDate: this.state.day + "-" + this.state.month + "-2017",
+            eventDateTime: "2017-" + this.state.month + "-" + this.state.day + " " + this.state.time,
             tags: this.state.tags
           })
           .then(function (response) {
@@ -118,12 +128,19 @@
                       <option>Month</option>
                       <option value="11">November</option>
                   </select>
-                  <select onChange={(e) => selectMonth(e)}>
+                  <select onChange={(e) => this.selectDay(e)}>
                       <option>Day</option>
-                      <option value="7">Tuesday</option>
+                      <option value="01">1</option>
+                      <option value="02">2</option>
+                      <option value="07">7</option>
                   </select>
                   <br/>
-                  datetime
+                  <select onChange={(e) => this.selectTime(e)}>
+                      <option>Day</option>
+                      <option value="8:00:00">8:00 am</option>
+                      <option value="8:30 AM">8:30 am</option>
+                      <option value="9:00 AM">9:00</option>
+                  </select>
                   <br/>
                   <button onClick={this.addContact}>Add Event</button>
                 </div>

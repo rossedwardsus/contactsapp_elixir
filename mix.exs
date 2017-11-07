@@ -20,7 +20,7 @@ defmodule Contactsapp.Mixfile do
   def application do
     [
       mod: {Contactsapp.Application, []},
-      extra_applications: [:logger, :runtime_tools, :comeonin, :bamboo]
+      extra_applications: [:logger, :runtime_tools, :comeonin, :bamboo, :timex]
     ]
   end
 
@@ -44,7 +44,8 @@ defmodule Contactsapp.Mixfile do
       {:guardian, "~> 1.0-beta"},
       {:comeonin, "~> 3.2"},
       {:argon2_elixir, "~> 1.2"},
-      {:bamboo, "~> 0.8"}
+      {:bamboo, "~> 0.8"},
+      {:timex, "~> 3.1"},
     ]
   end
 
