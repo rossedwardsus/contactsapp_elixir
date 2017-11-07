@@ -1,7 +1,7 @@
-defmodule ContactsApp.Registration.Registration do
+defmodule ContactsApp.Event.Event do
   use Ecto.Schema
 
-  schema "registration" do
+  schema "events" do
   	field :user_id, Ecto.UUID
     field :email, :string
     #password_hash, :string

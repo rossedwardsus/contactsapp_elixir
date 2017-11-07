@@ -34,7 +34,6 @@
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
 
       <main role="main">
-        <div id="root"></div>
         <br/>
         <br/>
         <a href="/add_contact">Add contact</a>
@@ -49,8 +48,8 @@
         <br/>
         <a href="/my_contacts">delete event</a>
         <br/>
-        <a href="/my_contacts">add friends to event</a>
         <br/>
+        <a href="/my_contacts">setup profile</a>
         <br/>
         <%= render @view_module, @view_template, assigns %>
       </main>
