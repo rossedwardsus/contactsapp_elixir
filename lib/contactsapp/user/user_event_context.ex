@@ -1,4 +1,4 @@
-defmodule ContactsApp.Event.Event do
+defmodule ContactsApp.User.UserEventContext do
   use Ecto.Schema
 
   schema "events" do

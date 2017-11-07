@@ -1,4 +1,4 @@
-defmodule ContactsApp.Registration.UserContact do
+defmodule ContactsApp.User.UserContact do
   use Ecto.Schema
 
   schema "user_contact" do

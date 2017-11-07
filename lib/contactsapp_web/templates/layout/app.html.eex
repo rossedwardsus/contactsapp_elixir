@@ -51,6 +51,11 @@
         <br/>
         <a href="/my_contacts">setup profile</a>
         <br/>
+        <a href="/register">register</a>
+        <br/>
+        <a href="/login">login</a>
+        
+        
         <%= render @view_module, @view_template, assigns %>
       </main>
 

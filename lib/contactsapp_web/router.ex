@@ -17,6 +17,9 @@ defmodule ContactsappWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/login", LoginController, :index
+    get "/register", RegisterController, :index
+
     get "/add_contact", AddContactController, :index
     get "/my_contacts", MyContactsController, :index
     get "/add_event", AddEventController, :index
@@ -26,6 +29,9 @@ defmodule ContactsappWeb.Router do
 
   #scope "/api", ContactsappWeb do
     #pipe_through :api
+
+    post "/api/register", ApiController, :register
+    post "/api/login", ApiController, :login
 
     post "/api/add", ApiController, :create
     post "/api/list", ApiController, :list

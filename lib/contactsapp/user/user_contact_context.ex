@@ -1,4 +1,4 @@
-defmodule ContactsApp.Registration.UserContactContext do
+defmodule ContactsApp.User.UserContactContext do
 
 	import Ecto.{Query, Changeset}, warn: false
   	#alias FirestormWeb.Repo

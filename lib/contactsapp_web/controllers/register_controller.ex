@@ -1,4 +1,4 @@
-defmodule ContactsappWeb.LoginRegisterController do
+defmodule ContactsappWeb.RegisterController do
   use ContactsappWeb, :controller
 
   def index(conn, _params) do

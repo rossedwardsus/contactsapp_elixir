@@ -2,10 +2,45 @@ defmodule ContactsappWeb.ApiController do
   use ContactsappWeb, :controller
 
   alias ContactsApp.Registration.UserContactContext
+  alias ContactsApp.Registration.RegistrationContext
+  alias ContactsApp.Registration.Registration
+  #alias ContactsApp.User.ProfileContext
 
   def index(conn, _params) do
   	
     json conn, %{hello: "there"}
+  end
+
+  def register(conn, _params) do
+
+  		IO.inspect(_params)
+
+	    case RegistrationContext.create_user(_params) do
+	      {:ok, user} -> 
+	      	#json conn, %{hello: "there"}
+	        conn
+	    #    |> put_flash(:info, "User created successfully.")
+	    #    |> redirect(to: user_path(conn, :show, user))
+	      {:error, %Ecto.Changeset{} = changeset} ->
+	      	 IO.inspect(changeset)
+	    #    render(conn, "new.html", changeset: changeset)
+	    end
+
+  end
+
+  def login(conn, _params) do
+
+  		IO.inspect("_params")
+
+	    #case UserContactContext.create_user_contact(_params) do
+	    #  {:ok, user_contact} -> json conn, %{hello: "there"}
+	    #    conn
+	    #    |> put_flash(:info, "User created successfully.")
+	    #    |> redirect(to: user_path(conn, :show, user))
+	    #  {:error, %Ecto.Changeset{} = changeset} ->
+	    #    render(conn, "new.html", changeset: changeset)
+	    #end
+
   end
 
   def create(conn, _params) do

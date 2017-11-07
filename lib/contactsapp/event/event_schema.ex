@@ -1,4 +1,4 @@
-defmodule ContactsApp.Registration.Registration do
+defmodule ContactsApp.Event.Event do
   use Ecto.Schema
 
   schema "registration" do
