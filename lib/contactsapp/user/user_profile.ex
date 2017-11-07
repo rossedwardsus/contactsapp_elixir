@@ -1,10 +1,15 @@
-defmodule ContactsApp.User.Profile do
+defmodule ContactsApp.User.UserProfile do
   use Ecto.Schema
 
-  schema "registration" do
-  	field :user_id, :string
+  @primary_key {:id, :binary_id, autogenerate: true}
+
+  schema "user_profile" do
+  	field :user_id, Ecto.UUID
+    #field :first_name, :string
+    #field :last_name, :string
     field :email, :string
-    field :registration_datetime, :utc_datetime
+    #field :mobile
+    #field :registration_datetime, :utc_datetime
 
   end
 end

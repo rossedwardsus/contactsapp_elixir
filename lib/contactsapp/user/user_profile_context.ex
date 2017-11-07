@@ -1,8 +1,8 @@
-defmodule ContactsApp.Registration.RegistrationContext do
+defmodule ContactsApp.User.UserProfileContext do
     #use Ecto.Schema
     import Ecto.Changeset
 
-    alias ContactsApp.Registration.Registration
+    alias ContactsApp.User.UserProfile
     alias Contactsapp.Repo
 
 	#add ecto datetime utc
@@ -16,12 +16,14 @@ defmodule ContactsApp.Registration.RegistrationContext do
 
 	#@spec authenticate(Plug.Conn.t, any) :: Plug.Conn.t
 	#@spec authenticate(Plug.Conn.t, map) :: Plug.Conn.t
-	@spec create_user(map) :: map
+	@spec create_user_profile(map) :: map
 
-	def create_user(attrs \\ %{}) do
+	def create_user_profile(attrs \\ %{}) do
 
-		registration_changeset = changeset(%Registration{}, %{email: "mary@example.com"})
-		{:ok, %Registration{}=user} = Repo.insert(registration_changeset)
+		IO.inspect(attrs)
+
+		user_profile_changeset = changeset(%UserProfile{}, %{email: "mary@example.com"})
+		{:ok, %UserProfile{}=user} = Repo.insert(user_profile_changeset)
 
 		#{:error, changeset} = Repo.insert(registration_changeset)
 
@@ -34,8 +36,8 @@ defmodule ContactsApp.Registration.RegistrationContext do
 	    struct
 	    |> cast(attrs, @optional_fields, @required_fields)
 	    #|> validate_required([:name, :email, :message])
-	    #|> put_change(:password_hash, Comeonin.Bcrypt.hashpwsalt("password"))
-	    |> put_change(:registration_datetime, Ecto.DateTime.utc)
+	    |> put_change(:user_id, Ecto.UUID.generate())
+	    #|> put_change(:registration_datetime, Ecto.DateTime.utc)
   	end
 
 end

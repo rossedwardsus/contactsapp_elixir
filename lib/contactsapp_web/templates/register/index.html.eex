@@ -78,7 +78,7 @@
             password: this.state.password
           })
           .then(function (response) {
-            console.log(response);
+            console.log(JSON.stringify(response));
           })
           .catch(function (error) {
             console.log(error);

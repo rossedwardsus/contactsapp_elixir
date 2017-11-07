@@ -3,7 +3,9 @@ defmodule ContactsappWeb.ApiController do
 
   alias ContactsApp.Registration.UserContactContext
   alias ContactsApp.Registration.RegistrationContext
-  alias ContactsApp.Registration.Registration
+  #alias ContactsApp.Registration.Registration
+  alias ContactsApp.User.UserProfileContext
+
   #alias ContactsApp.User.ProfileContext
 
   def index(conn, _params) do
@@ -16,9 +18,15 @@ defmodule ContactsappWeb.ApiController do
   		IO.inspect(_params)
 
 	    case RegistrationContext.create_user(_params) do
-	      {:ok, user} -> 
-	      	#json conn, %{hello: "there"}
-	        conn
+	      {:ok, user} -> #json conn, %{user_id: user.user_id}
+	      	#insert into profiles as well
+	      	case UserProfileContext.create_user_profile(user) do
+	      	 {:ok, user_profile} -> json conn, %{user_id: user.user_id}
+	      	 					#IO.inspect(user_profile)
+
+	      	end
+	      
+	    #    conn
 	    #    |> put_flash(:info, "User created successfully.")
 	    #    |> redirect(to: user_path(conn, :show, user))
 	      {:error, %Ecto.Changeset{} = changeset} ->
