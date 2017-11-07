@@ -23,8 +23,8 @@ defmodule ContactsappWeb.ApiController do
 
   end
 
-  @spec
-  def list(conn, _params) do
+  #@spec
+  def list_events(conn, _params) do
 
   		IO.inspect("_params")
 
@@ -38,5 +38,21 @@ defmodule ContactsappWeb.ApiController do
 	    end
 
   end
+
+  def list_user_events(conn, _params) do
+
+  		IO.inspect("_params")
+
+	    case UserContactContext.get_user_contacts(_params) do
+	      {:ok, user_contact} -> json conn, %{hello: "there"}
+	    #    conn
+	    #    |> put_flash(:info, "User created successfully.")
+	    #    |> redirect(to: user_path(conn, :show, user))
+	    #  {:error, %Ecto.Changeset{} = changeset} ->
+	    #    render(conn, "new.html", changeset: changeset)
+	    end
+
+  end
+
 
 end

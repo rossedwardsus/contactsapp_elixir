@@ -1,0 +1,169 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+ 
+
+<div class="jumbotron">
+  <h2><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h2>
+  <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
+</div>
+
+<div class="row marketing">
+  <div class="col-lg-6">
+    <h4>Resources</h4>
+    <ul>
+      <li>
+        <a href="http://phoenixframework.org/docs/overview">Guides</a>
+      </li>
+      <li>
+        <a href="https://hexdocs.pm/phoenix">Docs</a>
+      </li>
+      <li>
+        <a href="https://github.com/phoenixframework/phoenix">Source</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="col-lg-6">
+    <h4>Help</h4>
+    <ul>
+      <li>
+        <a href="http://groups.google.com/group/phoenix-talk">Mailing list</a>
+      </li>
+      <li>
+        <a href="http://webchat.freenode.net/?channels=elixir-lang">#elixir-lang on freenode IRC</a>
+      </li>
+      <li>
+        <a href="https://twitter.com/elixirphoenix">@elixirphoenix</a>
+      </li>
+    </ul>
+  </div>
+  
+  
+</div>
+
+
+<script type="text/babel">
+
+  class Greeting extends React.Component {
+
+    //private textInput: HTMLInputElement;
+
+    constructor() {
+      super();
+
+      this.state = {
+        isEnabled: false,
+        month: "",
+        year: "",
+        tags: []
+      }
+
+      this.addContact = this.addContact.bind(this);
+      this.selectTags = this.selectTags.bind(this);
+      this.selectMonth = this.selectMonth.bind(this);
+      this.selectYear = this.selectYear.bind(this);
+
+
+    }
+
+
+    componentDidMount(){
+
+        
+        axios.post('/api/new', {
+          firstName: 'Fred',
+          lastName: 'Flintstone'
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+    }
+
+    selectTags(e) {
+
+        let values = [];
+
+        console.log(e.target.options[0].value);
+
+        for (var i = 0, l = e.target.options.length; i < l; i++) {
+          if (options[i].selected) {
+            value.push(options[i].value);
+          }
+        }
+
+        this.setState({tags: values});
+
+    }
+
+    selectMonth(e) {
+
+        console.log(e.target.value);
+
+    }
+
+    selectYear(e) {
+
+        console.log(e.target.value);
+
+    }
+
+    addContact() { 
+
+      let that = this;
+      let firstName = that.textInput.value
+      
+      axios.post('/api/new', {
+            eventName: firstName,
+            eventDate: this.state.day + "-" + this.state.month + "-2017"
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+    }
+
+    render() {
+        return (<div>
+                  Add Event 
+                  <br/>
+                  <br/>
+                  <input placeholder="Event Name" ref={(input) => { this.textInput = input; }} />
+                  <br/>
+                  tags
+                  <br/>
+                  <select multiple={true} value={["startups", "programming"]} onChange={(e) => this.selectTags(e)}>
+                      <option value="startups">Startups</option>
+                      <option value="programming">Programming</option>
+                  </select>
+                  <br/>
+                  <select onChange={(e) => this.selectMonth(e)}>
+                      <option>Month</option>
+                      <option value="11">November</option>
+                  </select>
+                  <select onChange={(e) => selectMonth(e)}>
+                      <option>Day</option>
+                      <option value="7">Tuesday</option>
+                  </select>
+                  <br/>
+                  datetime
+                  <br/>
+                  <button onClick={this.addContact}>Add Event</button>
+                </div>
+        );
+    }
+  }
+
+  ReactDOM.render(
+    <Greeting/>,
+    document.getElementById('root')
+  );
+
+</script>

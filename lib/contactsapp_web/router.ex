@@ -19,6 +19,9 @@ defmodule ContactsappWeb.Router do
     get "/", PageController, :index
     get "/add_contact", AddContactController, :index
     get "/my_contacts", MyContactsController, :index
+    get "/add_event", AddEventController, :index
+    get "/list_events", ListEventsController, :index
+
 
     post "/api/add", ApiController, :create
     post "/api/list", ApiController, :list
