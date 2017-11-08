@@ -38,6 +38,7 @@ defmodule ContactsApp.Registration.RegistrationContext do
 	    struct
 	    |> cast(attrs, @optional_fields, @required_fields)
 	    #|> validate_required([:name, :email, :message])
+	    #|> validate_format(:email, ~r/@/)
 	    |> put_change(:password_hash, Comeonin.Bcrypt.hashpwsalt("password"))
 	    |> put_change(:registration_datetime, Ecto.DateTime.utc)
   	end

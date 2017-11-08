@@ -98,6 +98,7 @@
           })
           .then(function (response) {
             console.log(response);
+             //location.href = "/list_events";
           })
           .catch(function (error) {
             console.log(error);

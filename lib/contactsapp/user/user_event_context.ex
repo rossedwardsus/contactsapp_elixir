@@ -5,6 +5,7 @@ defmodule ContactsApp.User.UserEventContext do
   	#alias FirestormWeb.Repo
 
   	alias ContactsApp.User.UserEvent
+  	alias ContactsApp.User.UserEventTags
   	alias Contactsapp.Repo
 
   	#add ecto datetime utc
@@ -21,9 +22,9 @@ defmodule ContactsApp.User.UserEventContext do
   	@spec add_user_event(map) :: map
   	def add_user_event(attrs \\ %{}) do
 
-  		IO.inspect(attrs[:event_datetime])
+  		#IO.inspect(attrs[:event_datetime])
 
-  		user_event_changeset = changeset(%UserEvent{}, %{user_id: "mary@example.com", event_name: "name", event_datetime: attrs[:event_datetime]})
+  		user_event_changeset = changeset(%UserEvent{}, %{event_name: "name", event_datetime: convert_datetime(attrs[:event_datetime])})
 		{:ok, %UserEvent{}=user} = Repo.insert(user_event_changeset)
 
 	#   %UserEvent{}
@@ -31,10 +32,39 @@ defmodule ContactsApp.User.UserEventContext do
 	#    |> Repo.insert()
 	end
 
-	defp changeset(%UserEvent{} = user_event, attrs) do
-	    user_event
+	def add_user_event_tags(attrs \\ %{}) do
+
+  		#IO.inspect(attrs[:event_datetime])
+
+  		#user_event_tags_changeset = tags_changeset(%UserEvent{}, %{event_name: "name", event_datetime: convert_datetime(attrs[:event_datetime])})
+		#{:ok, %UserEvent{}=user} = Repo.insert(user_event_changeset)
+
+	#   %UserEvent{}
+	#    |> user_changeset(attrs)
+	#    |> Repo.insert()
+	end
+
+	defp changeset(struct, attrs \\ {}) do
+		IO.inspect(attrs)
+	    struct
 	    |> cast(attrs, @optional_fields, @required_fields)
-	    #|> validate_required([:username, :email, :name])
+	    #|> put_change(:event_datetime, convert_datetime(attrs[:event_datetime]))
+	end
+
+	 defp convert_datetime(event_datetime_string) do
+
+	 		IO.inspect(event_datetime_string)
+
+	 		{:ok,  event_datetime_naive} = Timex.parse(event_datetime_string, "{YYYY}-{0M}-{0D} {h12}:{m}:{s}")
+
+	 		event_datetime_naive
 	 end
+
+	 defp tags_changeset(struct, attrs \\ {}) do
+		IO.inspect(attrs)
+	    struct
+	    |> cast(attrs, @optional_fields, @required_fields)
+	    #|> put_change(:event_datetime, convert_datetime(attrs[:event_datetime]))
+	end
 
 end

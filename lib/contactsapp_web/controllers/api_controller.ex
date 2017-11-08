@@ -5,6 +5,8 @@ defmodule ContactsappWeb.ApiController do
   alias ContactsApp.Registration.RegistrationContext
   #alias ContactsApp.Registration.Registration
   alias ContactsApp.User.UserEventContext
+  alias ContactsApp.User.UserEventTagsContext
+  
   alias ContactsApp.User.UserProfileContext
 
   #alias ContactsApp.User.ProfileContext
@@ -85,12 +87,23 @@ defmodule ContactsappWeb.ApiController do
 
   		#event_datetime = NaiveDateTime.to_erl(event_datetime_naive) |> Ecto.DateTime.from_erl
 
-  		for x <- _params["tags"] do
-		  IO.inspect(x)
-		end
+  		
 
-	    case UserEventContext.add_user_event(%{user_id: _params["user_id"], event_name: "name", event_datetime: ~N[2017-11-01 08:00:00]}) do
+	    case UserEventContext.add_user_event(%{user_id: _params["user_id"], event_name: "name", event_datetime: _params["eventDateTime"]}) do
 	      {:ok, user_event} -> json conn, %{hello: "there"}
+	      #add to user_event_tags table
+		      
+		      case UserEventTagsContext.add_user_event_tags(%{tags: _params["tags"]}) do
+			      {:ok, user_event_tags} -> user_event_tags
+			      
+				      #for x <- _params["tags"] do
+					  #	  IO.inspect("x")
+					  #end
+
+			  end
+
+	      #look for users following these tags and send them a message
+
 	    #    conn
 	    #    |> put_flash(:info, "User created successfully.")
 	    #    |> redirect(to: user_path(conn, :show, user))
