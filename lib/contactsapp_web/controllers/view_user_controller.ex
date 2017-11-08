@@ -1,7 +1,7 @@
 defmodule ContactsappWeb.ViewUserController do
   use ContactsappWeb, :controller
 
-  def index(conn, %{"event_id" => event_id}) do
+  def index(conn, %{"user_id" => user_id}) do
 
   	IO.inspect(conn)
 

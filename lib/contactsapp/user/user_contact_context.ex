@@ -3,7 +3,7 @@ defmodule ContactsApp.User.UserContactContext do
 	import Ecto.{Query, Changeset}, warn: false
   	#alias FirestormWeb.Repo
 
-  	alias ContactsApp.Registration.UserContact
+  	alias ContactsApp.User.UserContact
 
   	#add ecto datetime utc
   	#and timex for local time
@@ -13,8 +13,8 @@ defmodule ContactsApp.User.UserContactContext do
 
   	#@spec authenticate(Plug.Conn.t, any) :: Plug.Conn.t
   	#@spec authenticate(Plug.Conn.t, map) :: Plug.Conn.t
-  	@spec create_user_contact(map) :: map
-  	def create_user_contact(attrs \\ %{}) do
+  	@spec save_user_contact(map) :: map
+  	def save_user_contact(attrs \\ %{}) do
 	    %UserContact{}
 	    |> user_changeset(attrs)
 	#    |> Repo.insert()

@@ -6,6 +6,9 @@ defmodule ContactsappWeb.ApiController do
   #alias ContactsApp.Registration.Registration
   alias ContactsApp.User.UserEventContext
   alias ContactsApp.User.UserEventTagsContext
+  alias ContactsApp.User.FollowEventContext
+  alias ContactsApp.Event.ListEventsContext
+  alias ContactsApp.Event.ViewEventContext
   
   alias ContactsApp.User.UserProfileContext
 
@@ -113,13 +116,12 @@ defmodule ContactsappWeb.ApiController do
 
   end
 
-  #@spec
-  def list_events(conn, _params) do
+  def user_follow_event(conn, _params) do
 
   		IO.inspect("_params")
 
-	    case UserContactContext.get_user_contacts(_params) do
-	      {:ok, user_contact} -> json conn, %{hello: "there"}
+	    case FollowEventContext.user_follow_event(_params) do
+	      {:ok, user_follow_event} -> json conn, user_follow_event
 	    #    conn
 	    #    |> put_flash(:info, "User created successfully.")
 	    #    |> redirect(to: user_path(conn, :show, user))
@@ -129,9 +131,44 @@ defmodule ContactsappWeb.ApiController do
 
   end
 
+  def user_save_contact(conn, _params) do
+
+  		IO.inspect("_params")
+
+	    case FollowEventContext.user_follow_event(_params) do
+	      {:ok, user_follow_event} -> json conn, user_follow_event
+	    #    conn
+	    #    |> put_flash(:info, "User created successfully.")
+	    #    |> redirect(to: user_path(conn, :show, user))
+	    #  {:error, %Ecto.Changeset{} = changeset} ->
+	    #    render(conn, "new.html", changeset: changeset)
+	    end
+
+  end
+
+  #@spec
+  def list_events(conn, _params) do
+
+  		IO.inspect("_params")
+
+  		json conn, ListEventsContext.get_events
+
+	    #case Events.get_events(_params) do
+	    #  {:ok, user_contact} -> json conn, %{hello: "there"}
+	    #    conn
+	    #    |> put_flash(:info, "User created successfully.")
+	    #    |> redirect(to: user_path(conn, :show, user))
+	    #  {:error, %Ecto.Changeset{} = changeset} ->
+	    #    render(conn, "new.html", changeset: changeset)
+	    #end
+
+  end
+
    def view_event(conn, %{"event_id" => event_id}) do
 
   		IO.inspect(event_id)
+
+  		json conn, ViewEventContext.get_event
 
 	    #case UserContactContext.get_user_contacts(_params) do
 	    #  {:ok, user_contact} -> json conn, %{hello: "there"}
@@ -144,7 +181,7 @@ defmodule ContactsappWeb.ApiController do
 
   end
 
-  def list_user_events(conn, _params) do
+  def list_users_events(conn, _params) do
 
   		IO.inspect("_params")
 

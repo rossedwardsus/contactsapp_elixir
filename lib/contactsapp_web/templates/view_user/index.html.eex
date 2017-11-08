@@ -22,7 +22,7 @@
         tags: []
       }
 
-      this.followEvent = this.followEvent.bind(this);
+      this.save = this.saveContact.bind(this);
 
     }
 
@@ -33,8 +33,8 @@
       let that = this;
       //let firstName = that.textInput.value
       
-      axios.post('/api/view_event', {
-            event_id: <%= @conn.params["event_id"] %>
+      axios.post('/api/view_user', {
+            user_id: 1
           })
           .then(function (response) {
             console.log(JSON.stringify(response));
@@ -77,11 +77,11 @@
 
     }
 
-    followEvent() { 
+    saveContact() { 
 
-         axios.post('/api/event/follow', {
-            user_id: <%= @conn.params["event_id"] %>,
-            event_id: <%= @conn.params["event_id"] %>
+         axios.post('/api/user/save_contact', {
+            user_id: <%= @conn.params["user_id"] %>,
+            event_id: '<%= @conn.params["viewed_user_id"] %>'
           })
           .then(function (response) {
             console.log(JSON.stringify(response));
@@ -98,20 +98,19 @@
 
     render() {
         return (<div>
-                  View Event
+                  View User
                   <br/>
                   tags
                   <br/>
-                  name of event
+                  name
                   <br/>
-                  event date
+                  email
                   <br/>
                   <br/>
-                  event followers
+                  add a note to remind yourself who this person is
                   <br/>
-                  <a href="/users/1">Ross</a>
                   <br/>
-                  <a onClick={() => this.followEvent()}>follow event</a>
+                  <a onClick={() => this.saveContact()}>Save to contacts</a>
                   <br/>
                   </div>
         );
