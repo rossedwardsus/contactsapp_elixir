@@ -1,6 +1,6 @@
 
 
-  <%= @conn.params["event_id"] %>
+  <%= @conn.params["user_id"] %>
   <div id="root"></div>
   </div>
 
@@ -22,7 +22,7 @@
         tags: []
       }
 
-      this.save = this.saveContact.bind(this);
+      this.saveProfile = this.saveProfile.bind(this);
 
     }
 
@@ -77,14 +77,10 @@
 
     }
 
-    saveContact() { 
+    saveProfile() { 
 
          axios.post('/api/user/save_profile', {
-            user_id: <%= @conn.params["user_id"] %>,
-            name: "",
-            email: "",
-            location: "",
-            mobile: ""
+            user_id: 1,
           })
           .then(function (response) {
             console.log(JSON.stringify(response));
@@ -101,18 +97,18 @@
 
     render() {
         return (<div>
-                  view User
+                  Edit User
                   <br/>
                   <br/>
-                  name
+                  name<input/>
                   <br/>
-                  email
-                  <br/>
-                  <br/>
-                  mobile
+                  email<input/>
                   <br/>
                   <br/>
+                  mobile<input/>
                   <br/>
+                  <br/>
+                  <a onClick={() => this.saveProfile()}>Save profile</a>
                   </div>
         );
     }

@@ -1,7 +1,7 @@
-defmodule ContactsappWeb.EditUserController do
+defmodule ContactsappWeb.EditUserProfileController do
   use ContactsappWeb, :controller
 
-  def index(conn, %{"event_id" => event_id}) do
+  def index(conn, _attrs) do
 
   	IO.inspect(conn)
 

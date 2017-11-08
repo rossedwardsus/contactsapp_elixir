@@ -2,15 +2,16 @@ defmodule ContactsappWeb.ApiController do
   use ContactsappWeb, :controller
 
   alias ContactsApp.Registration.UserContactContext
-  alias ContactsApp.Registration.RegistrationContext
+  alias ContactsApp.User.RegistrationContext
   #alias ContactsApp.Registration.Registration
   alias ContactsApp.User.UserEventContext
   alias ContactsApp.User.UserEventTagsContext
   alias ContactsApp.User.FollowEventContext
   alias ContactsApp.Event.ListEventsContext
   alias ContactsApp.Event.ViewEventContext
-  
+  alias ContactsApp.User.ViewUserContext
   alias ContactsApp.User.UserProfileContext
+  alias ContactsApp.User.SaveUserProfile
 
   #alias ContactsApp.User.ProfileContext
 
@@ -136,6 +137,67 @@ defmodule ContactsappWeb.ApiController do
   		IO.inspect("_params")
 
 	    case FollowEventContext.user_follow_event(_params) do
+	      {:ok, user_follow_event} -> json conn, user_follow_event
+	    #    conn
+	    #    |> put_flash(:info, "User created successfully.")
+	    #    |> redirect(to: user_path(conn, :show, user))
+	    #  {:error, %Ecto.Changeset{} = changeset} ->
+	    #    render(conn, "new.html", changeset: changeset)
+	    end
+
+  end
+
+
+  def view_user(conn, _params) do
+
+  		IO.inspect("_params")
+
+	    case ViewUserContext.get_user(_params) do
+	      {:ok, user_profile} -> json conn, user_profile
+	    #    conn
+	    #    |> put_flash(:info, "User created successfully.")
+	    #    |> redirect(to: user_path(conn, :show, user))
+	    #  {:error, %Ecto.Changeset{} = changeset} ->
+	    #    render(conn, "new.html", changeset: changeset)
+	    end
+
+  end
+
+   def get_user_profile(conn, _params) do
+
+  		IO.inspect("_params")
+
+	    case UserProfile.get_user_profile(_params) do
+	      {:ok, user_profile} -> json conn, user_profile
+	    #    conn
+	    #    |> put_flash(:info, "User created successfully.")
+	    #    |> redirect(to: user_path(conn, :show, user))
+	    #  {:error, %Ecto.Changeset{} = changeset} ->
+	    #    render(conn, "new.html", changeset: changeset)
+	    end
+
+  end
+
+  def save_user_profile(conn, _params) do
+
+  		IO.inspect("_params")
+
+	    case UserSave.save_user_profile(_params) do
+	      {:ok, user_profile} -> json conn, user_profile
+	    #    conn
+	    #    |> put_flash(:info, "User created successfully.")
+	    #    |> redirect(to: user_path(conn, :show, user))
+	    #  {:error, %Ecto.Changeset{} = changeset} ->
+	    #    render(conn, "new.html", changeset: changeset)
+	    end
+
+  end
+
+  def search_users(conn, _params) do
+
+  		IO.inspect("_params")
+
+	    case ViewUser.get_user(_params) do
 	      {:ok, user_follow_event} -> json conn, user_follow_event
 	    #    conn
 	    #    |> put_flash(:info, "User created successfully.")

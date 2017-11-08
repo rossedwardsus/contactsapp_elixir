@@ -49,7 +49,7 @@
         <a href="/my_contacts">delete event</a>
         <br/>
         <br/>
-        <a href="/my_contacts">setup profile</a>
+        <a href="/user/edit_profile">edit profile</a>
         <br/>
         <a href="/register">register</a>
         <br/>

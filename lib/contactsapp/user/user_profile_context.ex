@@ -16,9 +16,9 @@ defmodule ContactsApp.User.UserProfileContext do
 
 	#@spec authenticate(Plug.Conn.t, any) :: Plug.Conn.t
 	#@spec authenticate(Plug.Conn.t, map) :: Plug.Conn.t
-	@spec create_user_profile(map) :: map
+	@spec save_user_profile(map) :: map
 
-	def create_user_profile(attrs \\ %{}) do
+	def save_user_profile(attrs \\ %{}) do
 
 		IO.inspect(attrs)
 
@@ -39,5 +39,23 @@ defmodule ContactsApp.User.UserProfileContext do
 	    |> put_change(:user_id, Ecto.UUID.generate())
 	    #|> put_change(:registration_datetime, Ecto.DateTime.utc)
   	end
+
+  	def get_user_profile(attrs \\ %{}) do
+
+		IO.inspect(attrs)
+
+		{:ok, name: "name"}
+
+		#Repo.get{UserProfile, 1}
+
+	#	user_profile_changeset = changeset(%UserProfile{}, %{email: "mary@example.com"})
+	#	{:ok, %UserProfile{}=user} = Repo.insert(user_profile_changeset)
+
+		#{:error, changeset} = Repo.insert(registration_changeset)
+
+	 #   %Registration{}
+	#    |> Registration.changeset(attrs)
+	#    |> Repo.insert()
+	end
 
 end
